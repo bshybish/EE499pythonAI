@@ -34,3 +34,7 @@ plt.imshow(x_test[110], cmap= plt.cm.binary)
 plt.show()
 
 
+#%%
+print("Bassam's first push on Github")
+
+
