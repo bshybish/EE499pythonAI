@@ -28,9 +28,9 @@ predss = model.predict([x_test])
 
 
 #%%
-print("the prediction value:"+str(np.argmax(predss[110])))
-print("the true value: "+str(y_test[110]))
-plt.imshow(x_test[110], cmap= plt.cm.binary)
+print("the prediction value:"+str(np.argmax(predss[112])))
+print("the true value: "+str(y_test[112]))
+plt.imshow(x_test[112], cmap= plt.cm.binary)
 plt.show()
 
 
