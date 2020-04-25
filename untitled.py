@@ -1,7 +1,7 @@
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import numpy as np 
-from sklearn.metrics import confusion_matrix
+#from sklearn.metrics import confusion_matrix
 
 print(tf.__version__)
 
