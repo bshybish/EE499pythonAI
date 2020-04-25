@@ -13,9 +13,7 @@ from os.path import isfile, join
 
 mypath = "C:\\Users\\Bassam\\Documents\\training_data\\first_set\\"
 
+t_files = listdir(mypath)
 
-onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
-filooos = listdir(mypath)
-s_filooos = sorted(filooos)
 
 
