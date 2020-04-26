@@ -14,20 +14,18 @@ from os.path import isfile, join
 from skimage import io, filters
 
 
-def swap3rdMat(mat1,mat2):
-    temp_mat = mat1
-    mat1 = mat2
-    mat2 = temp_mat 
-
-def shuffle(x_test, y_test):
+def shuffle_c(xx_test, yy_test):
     tempRand = np.arange(34)
     tempRand = np.random.permutation(tempRand)
-    
+    j = 0
+    for k in tempRand:
+        (xx_test[k,:,:], xx_test[j,:,:]) = (xx_test[j,:,:], xx_test[k,:,:])
+        (yy_test[k], yy_test[j]) = (yy_test[j], yy_test[k])
+        j = j + 1
+    return (xx_test, yy_test)
     
     
 #%%
-
-
 
 
 mypath          = "C:\\Users\\Bassam\\Documents\\training_data\\first_set\\"
@@ -42,8 +40,33 @@ for i in t_files:
     x4 = cv2.resize(x4, (128,128))
     x4 = tf.keras.utils.normalize(x4)
     x_test = np.append(x_test,[x4],axis=0)
+    
+
 
 #%%
-z = np.arange(23)
-z = np.random.permutation(z)
+
+(zx_test, zy_test) = shuffle_c(x_test, y_test)
+
+model = tf.keras.models.Sequential()
+model.add(tf.keras.layers.Flatten())
+model.add(tf.keras.layers.Dense(128, activation= tf.nn.relu))
+model.add(tf.keras.layers.Dense(128, activation= tf.nn.relu))
+model.add(tf.keras.layers.Dense(10, activation= tf.nn.softmax))
+
+model.compile(optimizer='adam',
+              loss     ='sparse_categorical_crossentropy'
+              )
+
+history = model.fit(x_test, y_test, epochs=5)
+
+#predss = model.predict([x_test])
+
+#%%
+print(zy_test[1])
+zz = zx_test[1,:,:]
+
+#%%
+print(y_test[5])
+zz = x_test[5,:,:]
+
 
