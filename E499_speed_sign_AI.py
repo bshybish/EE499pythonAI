@@ -13,6 +13,23 @@ from os import listdir
 from os.path import isfile, join
 from skimage import io, filters
 
+
+def swap3rdMat(mat1,mat2):
+    temp_mat = mat1
+    mat1 = mat2
+    mat2 = temp_mat 
+
+def shuffle(x_test, y_test):
+    tempRand = np.arange(34)
+    tempRand = np.random.permutation(tempRand)
+    
+    
+    
+#%%
+
+
+
+
 mypath          = "C:\\Users\\Bassam\\Documents\\training_data\\first_set\\"
 t_files         = listdir(mypath)
 y_test          = [30, 40, 30, 30, 40, 50, 50, 50, 70, 80, 80, 80, 80,
@@ -25,4 +42,8 @@ for i in t_files:
     x4 = cv2.resize(x4, (128,128))
     x4 = tf.keras.utils.normalize(x4)
     x_test = np.append(x_test,[x4],axis=0)
+
+#%%
+z = np.arange(23)
+z = np.random.permutation(z)
 
