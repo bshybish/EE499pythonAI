@@ -51,15 +51,15 @@ model = tf.keras.models.Sequential()
 model.add(tf.keras.layers.Flatten())
 model.add(tf.keras.layers.Dense(128, activation= tf.nn.relu))
 model.add(tf.keras.layers.Dense(128, activation= tf.nn.relu))
-model.add(tf.keras.layers.Dense(10, activation= tf.nn.softmax))
+model.add(tf.keras.layers.Dense(1000, activation= tf.nn.softmax))
 
 model.compile(optimizer='adam',
               loss     ='sparse_categorical_crossentropy'
               )
-
+y_test = np.array(y_test)
 history = model.fit(x_test, y_test, epochs=5)
 
-#predss = model.predict([x_test])
+predss = model.predict([x_test])
 
 #%%
 print(zy_test[1])
@@ -68,5 +68,12 @@ zz = zx_test[1,:,:]
 #%%
 print(y_test[5])
 zz = x_test[5,:,:]
+
+#%%
+
+print("the prediction value:"+str(np.argmax(predss[3])))
+print("the true value: "+str(y_test[3]))
+plt.imshow(x_test[3], cmap= 'gray')
+plt.show()
 
 
