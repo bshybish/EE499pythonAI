@@ -57,7 +57,7 @@ model.compile(optimizer='adam',
               loss     ='sparse_categorical_crossentropy'
               )
 y_test = np.array(y_test)
-history = model.fit(x_test, y_test, epochs=5)
+history = model.fit(x_test, y_test, epochs=100)
 
 predss = model.predict([x_test])
 
@@ -71,9 +71,9 @@ zz = x_test[5,:,:]
 
 #%%
 
-print("the prediction value:"+str(np.argmax(predss[3])))
-print("the true value: "+str(y_test[3]))
-plt.imshow(x_test[3], cmap= 'gray')
+print("the prediction value:"+str(np.argmax(predss[1])))
+print("the true value: "+str(y_test[1]))
+plt.imshow(x_test[1], cmap= 'gray')
 plt.show()
 
 
