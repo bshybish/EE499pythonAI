@@ -18,15 +18,11 @@ t_files         = listdir(mypath)
 y_test          = [30, 40, 30, 30, 40, 50, 50, 50, 70, 80, 80, 80, 80,
                    80, 80, 80, 80, 80, 100, 100, 80, 90, 90,
                    90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90]
-x_test          = np.array([])
-
-print(len(y_test))
-print(type(y_test))
-
-x1 = np.array(tf.keras.utils.normalize(cv2.imread(mypath + t_files[1], cv2.IMREAD_GRAYSCALE)))
-
-
+x_test          = np.zeros((0,128,128))
 
 for i in t_files:
-    x_test = np.append(x_test,tf.keras.utils.normalize(cv2.imread(mypath + i, cv2.IMREAD_GRAYSCALE)))
+    x4 = cv2.imread(mypath + i, cv2.IMREAD_GRAYSCALE)
+    x4 = cv2.resize(x4, (128,128))
+    x4 = tf.keras.utils.normalize(x4)
+    x_test = np.append(x_test,[x4],axis=0)
 
