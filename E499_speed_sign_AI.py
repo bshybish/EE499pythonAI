@@ -28,16 +28,34 @@ def shuffle_c(xx_test, yy_test):
 #%%
 
 
-mypath          = "C:\\Users\\Bassam\\Documents\\training_data\\first_set\\"
+#mypath          = "C:\\Users\\Bassam\\Documents\\training_data\\first_set\\"
+mypath = "C:\\Users\\mm\\Documents\\GitHub\\EE499pythonAI\\Train_Arabic_Traffic_Signs_24_2200\\"
 t_files         = listdir(mypath)
-y_test          = [30, 40, 30, 30, 40, 50, 50, 50, 70, 80, 80, 80, 80,
-                   80, 80, 80, 80, 80, 100, 100, 80, 90, 90,
-                   90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90]
-x_test          = np.zeros((0,128,128))
+
+y_test = np.empty(519)
+
+for i in range(519):
+    if (i<=105):
+        y_test[i]=30
+    if (i>105 and i<=198):
+        y_test[i]=40
+    if (i>198 and i<=288):
+        y_test[i]=50
+    if (i>288 and i<=377):
+        y_test[i]=60
+    if (i>377 and i<=474):
+        y_test[i]=80
+    if (i>474 and i<=519):
+        y_test[i]=100
+        
+#y_test          = [30, 40, 30, 30, 40, 50, 50, 50, 70, 80, 80, 80, 80,
+#                   80, 80, 80, 80, 80, 100, 100, 80, 90, 90,
+##                   90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90]
+x_test          = np.zeros((0,32,32))
 
 for i in t_files:
     x4 = cv2.imread(mypath + i, cv2.IMREAD_GRAYSCALE)
-    x4 = cv2.resize(x4, (128,128))
+    x4 = cv2.resize(x4, (32,32))
     x4 = tf.keras.utils.normalize(x4)
     x_test = np.append(x_test,[x4],axis=0)
     
