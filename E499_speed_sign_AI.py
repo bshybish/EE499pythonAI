@@ -43,9 +43,9 @@ for i in range(519):
         y_test[i]=50
     if (i>288 and i<=377):
         y_test[i]=60
-    if (i>377 and i<=474):
+    if (i>377 and i<=456):
         y_test[i]=80
-    if (i>474 and i<=519):
+    if (i>456 and i<=519):
         y_test[i]=100
         
 #y_test          = [30, 40, 30, 30, 40, 50, 50, 50, 70, 80, 80, 80, 80,
