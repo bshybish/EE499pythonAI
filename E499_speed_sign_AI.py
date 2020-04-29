@@ -16,7 +16,22 @@ from skimage import io, filters
 
 
 #%%
-
+def shuffle_c(xx_test, yy_test):
+    tempRand = np.arange(128)
+    tempRand = np.random.permutation(tempRand)
+    j = 0
+    for k in tempRand:
+        (xx_test[k,:,:], xx_test[j,:,:]) = (xx_test[j,:,:], xx_test[k,:,:])
+        (yy_test[k], yy_test[j]) = (yy_test[j], yy_test[k])
+        j = j + 1
+    return (xx_test, yy_test)
+    
+    
+for i in t_files:
+    x4 = cv2.imread(mypath + i, cv2.IMREAD_GRAYSCALE)
+    x4 = cv2.resize(x4, (128,128))
+    x4 = tf.keras.utils.normalize(x4)
+    x_test = np.append(x_test,[x4],axis=0)
 
 #mypath          = "C:\\Users\\Bassam\\Documents\\training_data\\first_set\\"
 mypath = "C:\\Users\\mm\\Documents\\GitHub\\EE499pythonAI\\Train_Arabic_Traffic_Signs_24_2200\\"
@@ -43,22 +58,7 @@ for i in range(519):
 ##                   90, 90, 90, 90, 90, 90, 90, 90, 90, 90, 90]
 x_test          = np.zeros((0,128,128))
 
-def shuffle_c(xx_test, yy_test):
-    tempRand = np.arange(128)
-    tempRand = np.random.permutation(tempRand)
-    j = 0
-    for k in tempRand:
-        (xx_test[k,:,:], xx_test[j,:,:]) = (xx_test[j,:,:], xx_test[k,:,:])
-        (yy_test[k], yy_test[j]) = (yy_test[j], yy_test[k])
-        j = j + 1
-    return (xx_test, yy_test)
-    
-    
-for i in t_files:
-    x4 = cv2.imread(mypath + i, cv2.IMREAD_GRAYSCALE)
-    x4 = cv2.resize(x4, (128,128))
-    x4 = tf.keras.utils.normalize(x4)
-    x_test = np.append(x_test,[x4],axis=0)
+
     
 
 
